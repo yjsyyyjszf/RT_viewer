@@ -997,6 +997,13 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@7.1.2":
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.2.tgz#81c89935f4647706fc54541145e6b4ecfef4b8e3"
+  integrity sha512-Y3SCjmhSupzFB6wcv1KmmFucH6gDVnI30WjOcicV10ju0cZjak3Jcs67YLIXBrmZYw1xCrVeJPbycFwrqNyxpg==
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@babel/runtime@7.9.0", "@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.0.tgz#337eda67401f5b066a6f205a3113d4ac18ba495b"
@@ -3213,6 +3220,29 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
+cornerstone-core@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/cornerstone-core/-/cornerstone-core-2.3.0.tgz#b16430b0dc3883c795fbbd5f64d0f6357f91c889"
+  integrity sha512-1LiCfRIlQvR1j8OhF7/3pvvQvvnTYZUywEkuoEo5K5mMrlKdrQMS75uW1uXb/nXShQDJyyjtTCQSVGgv2yHA+w==
+
+cornerstone-math@0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/cornerstone-math/-/cornerstone-math-0.1.7.tgz#7c55536f02e7221b05fc49a4c780bb82c234ce39"
+  integrity sha512-svsDSoqLNFM9niCV2AtV2DNmRkYztT1v80lVdbA5hkgdGdpWg5/h2On794zbqBK+aI3hNOHufERDsI4wdXGknA==
+
+cornerstone-math@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/cornerstone-math/-/cornerstone-math-0.1.8.tgz#68ab1f9e4fdcd7c5cb23a0d2eb4263f9f894f1c5"
+  integrity sha512-x7NEQHBtVG7j1yeyj/aRoKTpXv1Vh2/H9zNLMyqYJDtJkNng8C4Q8M3CgZ1qer0Yr7eVq2x+Ynmj6kfOm5jXKw==
+
+cornerstone-tools@^4.21.1:
+  version "4.21.1"
+  resolved "https://registry.yarnpkg.com/cornerstone-tools/-/cornerstone-tools-4.21.1.tgz#50c737b70c4f64c8d21e074533ab229b9dd1c7bf"
+  integrity sha512-v3nNnO30ohoVYwUFKoP/7uGODXyQfLbMnk2DKj0NloNrUVI6X1eVBZjLs5ATYqY6cHOda+KmQD5vGhswX4/dag==
+  dependencies:
+    "@babel/runtime" "7.1.2"
+    cornerstone-math "0.1.7"
+
 cosmiconfig@^5.0.0, cosmiconfig@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.2.1.tgz#040f726809c591e77a17c0a3626ca45b4f168b1a"
@@ -3692,6 +3722,11 @@ detect-port-alt@1.1.6:
   dependencies:
     address "^1.0.1"
     debug "^2.6.0"
+
+dicom-parser@^1.8.7:
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/dicom-parser/-/dicom-parser-1.8.7.tgz#36df15f8b4250e56f164d8a50484c45e0a5668de"
+  integrity sha512-JRh6ciXii1JiDFxd3yUiteNZbOd4Ebmq9HBJlxEJ4Gd1CC5tMIs8zoztK69Ih0UeT96ixbmanb4M2mjaaYT8sg==
 
 diff-sequences@^24.9.0:
   version "24.9.0"
@@ -4905,6 +4940,11 @@ gzip-size@5.1.1:
   dependencies:
     duplexer "^0.1.1"
     pify "^4.0.1"
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
 
 handle-thing@^2.0.0:
   version "2.0.0"
@@ -8787,6 +8827,11 @@ regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
+
+regenerator-runtime@^0.12.0:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
+  integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
 
 regenerator-runtime@^0.13.3, regenerator-runtime@^0.13.4:
   version "0.13.5"
