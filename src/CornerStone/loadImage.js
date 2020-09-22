@@ -1,11 +1,11 @@
 import dicomParse from "./dicomParse";
 import dicomParser from "dicom-parser";
-
 import Hammer from "hammerjs";
 import * as cornerstone from "cornerstone-core";
 import * as cornerstoneTools from "cornerstone-tools";
 import * as cornerstoneMath from "cornerstone-math"
 import * as cornerstoneWadoImageLoader from "cornerstone-wado-image-loader"
+import voxelCal from "./voxel";
 
 cornerstoneWadoImageLoader.external.cornerstone = cornerstone
 cornerstoneWadoImageLoader.external.dicomParser = dicomParser
@@ -14,10 +14,14 @@ cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath
 cornerstoneTools.init();
 
-function handleFileChange(e) {
-    const imageId = cornerstoneWadoImageLoader.wadouri.fileManager.add(e.target.files[0])
-    loadImage(imageId)
+const voxel = require('./voxel.js');
 
+function handleFileChange(e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const imageId = cornerstoneWadoImageLoader.wadouri.fileManager.add(e.target.files[0])
+    loadImage(imageId);
 }
 
 //cornerstone으로 image load
@@ -30,14 +34,11 @@ function loadImage(imageId) {
         cornerstone.displayImage(el, image, viewport);
 
         dicomParse(image);
-
+        voxelCal(image);
     });
 
-    el.addEventListener('mousemove', function (event) {
-        const pixelCoords = cornerstone.pageToPixel(el, event.pageX, event.pageY);
-        document.getElementById('coords').textContent = "pageX=" + event.pageX + ", pageY=" + event.pageY + ", pixelX=" + pixelCoords.x + ", pixelY=" + pixelCoords.y;
-    });
 
 
 }
-export default handleFileChange
+
+export default handleFileChange;

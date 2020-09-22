@@ -8,7 +8,8 @@ import dicomParser from "dicom-parser"
 import "./MainUI.css"
 import { angleOn, lengthOn, eraserOn, drawCircle , drawRectangle} from "./buttonEventFunction.js"
 import handleFileChange from './loadImage.js'
-import {draw1,draw2,draw3,draw4 ,cursor }from './canvas.js'
+import {draw1,draw2,draw3,draw4,path }from './canvas.js'
+const imageId = require("./1.2.840.113619.2.55.3.41169751.266.1362974723.248.63.dcm");
 
 cornerstoneWadoImageLoader.external.cornerstone = cornerstone
 cornerstoneWadoImageLoader.external.dicomParser = dicomParser
@@ -17,14 +18,11 @@ cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath
 cornerstoneTools.init();
 
+
+
 class MainUIElements extends React.Component {
     componentDidMount() {
         const element = this.element;
-
-        element.addEventListener('dblclick',function(event){
-            const pixelCoords = cornerstone.pageToPixel(element, event.pageX, event.pageY);
-            document.getElementById('pixelValue').textContent = "pageX=" + event.pageX + ", pageY=" + event.pageY + ", pixelX=" + pixelCoords.x + ", pixelY=" + pixelCoords.y;
-        });
 
         element.addEventListener('mousedown', function (e) {
             let lastX = e.pageX;
@@ -113,6 +111,7 @@ class MainUIElements extends React.Component {
                 <input type="file" onChange={(e) => {
                     handleFileChange(e)
                 }}/>&nbsp;&nbsp;
+
                     <div>
                         <button onClick={() => {angleOn()}}>Angle</button>&nbsp;&nbsp;
                         <button onClick={() => {lengthOn()}}>Length</button>&nbsp;&nbsp;
@@ -139,7 +138,7 @@ class MainUIElements extends React.Component {
                     <button onClick={()=>{draw2()}}>Lt EyeBall</button>
                     <button onClick={()=>{draw3()}}>Rt EyeBall</button>
                     <button onClick={()=>{draw4()}}>Lt Parotid</button>
-                    <button onClick={()=>{draw1()}}>Rt Parotid</button>
+                    <button onClick={()=>{path()}}>Rt Parotid</button>
                     <button onClick={()=>{draw2()}}>Body</button>
                     <button onClick={()=>{draw3()}}>Avoid Structure</button>
                     <button onClick={()=>{draw4()}}>GTV</button>
@@ -165,11 +164,10 @@ class MainUIElements extends React.Component {
                 <div id="dicomImageWrapper" className="wrapper"
                      onContextMenu="return false"
                      onmousedown="return false" >
-                        <div id="dicomImage"   className="viewportElement"
+                        <div id="dicomImage" className="viewportElement"
                              ref={input => {
                                  this.element = input;}}>
-                            <canvas id ="myCanvas" className={"canvas"} >
-                            </canvas>
+                            <canvas id ="myCanvas" className={"canvas"} />
                         </div>
                     <div id="topleft" className="overlay" className="topleft">
                         Patient Name:
@@ -189,7 +187,11 @@ class MainUIElements extends React.Component {
 
 
                 <div><span id="coords"></span></div>
+                <div><span id="voxelCoords">voxel</span></div>
+
                 <div><span id="pixelValue"></span></div>
+                <div><span id="voxelValue"></span></div>
+
                 <div><span id="patient">Patient ID : </span></div>
                 <div><span id="modality">Modality : </span></div>
                 <br></br>
@@ -198,6 +200,19 @@ class MainUIElements extends React.Component {
                     <div><span id="seriesUID">Series UID :</span></div>
                     <div><span id="instanceUID">Instance UID : </span></div>
                     <div><span id="frameUID">Frame of Reference UID : </span></div>
+                </div>
+                <br></br>
+                <div id="voxel">
+                    <div><span id="imageOrientation">Image Orientation :</span></div>
+                    <div><span id="pixelSpacing">Pixel Spacing :</span></div>
+                    <div><span id="imagePosition">Image Position : </span></div>
+                </div>
+                <div id="voxelCal">
+                    <div><span id="Sxyz"></span></div>
+                    <div><span id="Xxyz"></span></div>
+                    <div><span id="Yxyz"></span></div>
+                    <div><span id="Dij"></span></div>
+
                 </div>
                 <br></br> <br></br> <br></br> <br></br>
 
