@@ -7,9 +7,8 @@ import Hammer from "hammerjs";
 import dicomParser from "dicom-parser"
 import "./MainUI.css"
 import { angleOn, lengthOn, eraserOn, drawCircle , drawRectangle} from "./buttonEventFunction.js"
-import handleFileChange from './loadImage.js'
+import {handleFileChange,handle} from './loadImage.js'
 import {draw1,draw2,draw3,draw4,path }from './canvas.js'
-const imageId = require("./1.2.840.113619.2.55.3.41169751.266.1362974723.248.63.dcm");
 
 cornerstoneWadoImageLoader.external.cornerstone = cornerstone
 cornerstoneWadoImageLoader.external.dicomParser = dicomParser
@@ -17,8 +16,6 @@ cornerstoneTools.external.cornerstone = cornerstone
 cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath
 cornerstoneTools.init();
-
-
 
 class MainUIElements extends React.Component {
     componentDidMount() {
@@ -111,7 +108,7 @@ class MainUIElements extends React.Component {
                 <input type="file" onChange={(e) => {
                     handleFileChange(e)
                 }}/>&nbsp;&nbsp;
-
+                <button onClick={()=>{handle()}}>TEST</button>
                     <div>
                         <button onClick={() => {angleOn()}}>Angle</button>&nbsp;&nbsp;
                         <button onClick={() => {lengthOn()}}>Length</button>&nbsp;&nbsp;

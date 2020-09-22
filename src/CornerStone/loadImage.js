@@ -14,8 +14,6 @@ cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstoneMath = cornerstoneMath
 cornerstoneTools.init();
 
-const voxel = require('./voxel.js');
-
 function handleFileChange(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -36,9 +34,11 @@ function loadImage(imageId) {
         dicomParse(image);
         voxelCal(image);
     });
-
-
-
 }
 
-export default handleFileChange;
+function handle(){
+    const imageId = 'dicomweb://s3.amazonaws.com/lury/PTCTStudy/1.3.6.1.4.1.25403.52237031786.3872.20100510032220.11.dcm';
+    loadImage(imageId);
+}
+
+export {handleFileChange, handle}
