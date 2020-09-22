@@ -52,6 +52,24 @@ function draw4(){
     ctx.closePath();
 
 }
+
+function path(){
+    var canvas = document. getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    ctx.moveTo(40,40);
+    ctx.lineTo(50,50);
+    ctx.lineTo(60,60);
+    ctx.lineTo(70,50);
+    ctx.lineTo(80,40);
+    ctx.fillStyle = "#00fefe";
+    // ctx.moveTo(-34.86,-78.8);
+    // ctx.lineTo(-25.49,-64.73);
+    // ctx.lineTo(-33.71,-62.99);
+    // ctx.lineTo(-35.47,-78.22);
+    ctx.fill();
+}
 function cursor(event){
     var canvas = document.getElementById("myCanvas");
     var  ctx=canvas.getContext("2d");
@@ -62,4 +80,4 @@ function cursor(event){
 
 }
 
-export {cursor,draw1,draw2,draw3,draw4}
+export {draw1,draw2,draw3,draw4,path}

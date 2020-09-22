@@ -1,6 +1,7 @@
 //dicom data
 
 import React from "react";
+import voxelCal from "./voxel";
 
 function dicomParse(image){
     try {
@@ -15,9 +16,17 @@ function dicomParse(image){
         document.getElementById('instanceUID').textContent = 'Instance UID : ' + image.data.string('x00080018');
         document.getElementById('frameUID').textContent = 'Frame of Reference UID : ' + image.data.string('x00200052');
 
+        document.getElementById('imageOrientation').textContent = 'Image Orientation : ' + image.data.string('x00200037');
+        document.getElementById('pixelSpacing').textContent = 'Pixel Spacing : ' + image.data.string('x00280030');
+        document.getElementById('imagePosition').textContent = 'Image Position : ' + image.data.string('x00200032');
+
     }catch(ex) {
         alert('parsing error');
+
     }
+
+
+
 }
 
 export default dicomParse;
