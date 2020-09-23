@@ -7,8 +7,7 @@ import Hammer from "hammerjs";
 import dicomParser from "dicom-parser"
 import "./MainUI.css"
 import { angleOn, lengthOn, eraserOn, drawCircle , drawRectangle} from "./buttonEventFunction.js"
-import {handleFileChange,handle} from './loadImage.js'
-import {draw1,draw2,draw3,draw4,path }from './canvas.js'
+import {handleFileChange,handle,draw} from './loadImage.js'
 
 cornerstoneWadoImageLoader.external.cornerstone = cornerstone
 cornerstoneWadoImageLoader.external.dicomParser = dicomParser
@@ -128,25 +127,9 @@ class MainUIElements extends React.Component {
                     </div>
 
                     <div>
-                    <button onClick={()=>{draw1()}}>LASER</button>
-                    <button onClick={()=>{draw2()}}>CAL</button>
-                    <button onClick={()=>{draw3()}}>Spinal Cord</button>
-                    <button onClick={()=>{draw4()}}>BrainStem</button>
-                    <button onClick={()=>{draw1()}}>CTV-Brain</button>
-                    <button onClick={()=>{draw2()}}>Lt EyeBall</button>
-                    <button onClick={()=>{draw3()}}>Rt EyeBall</button>
-                    <button onClick={()=>{draw4()}}>Lt Parotid</button>
-                    <button onClick={()=>{path()}}>Rt Parotid</button>
-                    <button onClick={()=>{draw2()}}>Body</button>
-                    <button onClick={()=>{draw3()}}>Avoid Structure</button>
-                    <button onClick={()=>{draw4()}}>GTV</button>
-                    <button onClick={()=>{draw1()}}>PTV-G</button>
-                    <button onClick={()=>{draw2()}}>PTV-C</button>
-                    <button onClick={()=>{draw3()}}>pPTV-C</button>
-                    <button onClick={()=>{draw4()}}>Shell_Body</button>
-                    <button onClick={()=>{draw1()}}>Shell_1</button>
-                    <button onClick={()=>{draw2()}}>Pseudo</button>
-                    <button onClick={()=>{draw3()}}>Pseudo2</button>
+
+                    <button onClick={()=>{draw()}}>draw</button>
+
                     </div>
 
                 <div>
@@ -165,7 +148,7 @@ class MainUIElements extends React.Component {
                         <div id="dicomImage" className="viewportElement"
                              ref={input => {
                                  this.element = input;}}>
-                            <canvas id ="myCanvas" className={"canvas"} />
+                            <canvas id ="myCanvas" className={"canvas"} width={512} height={512} />
                         </div>
                     <div id="topleft" className="overlay" className="topleft">
                         Patient Name:

@@ -7,27 +7,27 @@ function voxelCal(image) {
     imgPos = imgPos.toString();
     let imgPosArr = imgPos.split("\\");
 
-    let Sx = Math.floor((parseFloat(imgPosArr[0]))*10)/10;
-    let Sy = Math.floor((parseFloat(imgPosArr[1]))*10)/10;
-    let Sz = Math.floor((parseFloat(imgPosArr[2]))*10)/10;
+    let Sx = (parseFloat(imgPosArr[0])*10)/10;
+    let Sy = (parseFloat(imgPosArr[1])*10)/10;
+    let Sz = (parseFloat(imgPosArr[2])*10)/10;
 
     let imgOri = image.data.string('x00200037');
     imgOri=imgOri.toString();
     let imgOriArr = imgOri.split("\\");
 
-    let Xx = Math.floor((parseFloat(imgOriArr[0]))*10)/10;
-    let Xy = Math.floor((parseFloat(imgOriArr[1]))*10)/10;
-    let Xz = Math.floor((parseFloat(imgOriArr[2]))*10)/10;
-    let Yx = Math.floor((parseFloat(imgOriArr[3]))*10)/10;
-    let Yy = Math.floor((parseFloat(imgOriArr[4]))*10)/10;
-    let Yz = Math.floor((parseFloat(imgOriArr[5]))*10)/10;
+    let Xx = (parseFloat(imgOriArr[0])*10)/10;
+    let Xy = (parseFloat(imgOriArr[1])*10)/10;
+    let Xz = (parseFloat(imgOriArr[2])*10)/10;
+    let Yx = (parseFloat(imgOriArr[3])*10)/10;
+    let Yy = (parseFloat(imgOriArr[4])*10)/10;
+    let Yz = (parseFloat(imgOriArr[5])*10)/10;
 
     let pixelSpace = image.data.string('x00280030');
     pixelSpace=pixelSpace.toString();
     let pixelSpaceArr = pixelSpace.split("\\");
 
-    let Di = Math.floor(parseFloat((pixelSpaceArr[0]))*10)/10;
-    let Dj = Math.floor(parseFloat((pixelSpaceArr[1]))*10)/10;
+    let Di = parseFloat((pixelSpaceArr[0])*10)/10;
+    let Dj =parseFloat((pixelSpaceArr[1])*10)/10;
 
     let el = document.getElementById('dicomImage');
 
@@ -44,6 +44,9 @@ function voxelCal(image) {
         let Py = (Xy * Di * pixelCoords.x) + ( Yy * Dj * pixelCoords.y) + Sy ;
         let Pz = (Xz * Di * pixelCoords.x) + ( Yz * Dj * pixelCoords.y) + Sz ;
 
+        Px = Math.floor(Px*10)/10;
+        Py = Math.floor(Py*10)/10;
+        Pz = Math.floor(Pz*10)/10;
         document.getElementById('voxelCoords').textContent = "Px = " + Px + ", Py = " + Py + ", Pz = "+ Pz ;
     });
 
@@ -55,9 +58,13 @@ function voxelCal(image) {
         let Py = (Xy * Di * pixelCoords.x) + ( Yy * Dj * pixelCoords.y) + Sy ;
         let Pz = (Xz * Di * pixelCoords.x) + ( Yz * Dj * pixelCoords.y) + Sz ;
 
+        Px = Math.floor(Px*10)/10;
+        Py = Math.floor(Py*10)/10;
+        Pz = Math.floor(Pz*10)/10;
+
         document.getElementById('voxelValue').textContent = "Px = " + Px + ", Py = " + Py + ", Pz = "+ Pz ;
     });
-    return [Sx,Sy,Xx,Yy,Di,Dj]
+    return [Sx,Sy,Di,Dj]
 }
 
 export default voxelCal;
