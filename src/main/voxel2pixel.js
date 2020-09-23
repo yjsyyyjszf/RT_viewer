@@ -9,9 +9,9 @@ function pixelCal(image){
     let struct = readTextFile(require('../dicomFile/RTStructure103.txt'));
     let str = struct.split("\\");
 
-    let vPx = []; //contour Data Px
-    let vPy = []; //contour Data Py
-    let vPz = []; //contour Data Pz
+    let vPx = []; //contour Data Px (voxel point x )
+    let vPy = []; //contour Data Py (voxel point y )
+    let vPz = []; //contour Data Pz (voxel point z )
 
     document.getElementById('str').textContent = "str : " + str;
     for(let i=0; i<str.length; i++ ){
@@ -31,10 +31,8 @@ function pixelCal(image){
     let voxel = voxelCal(image);
     let Sx = voxel[0];
     let Sy = voxel[1];
-    let Xx = voxel[2];
-    let Yy = voxel[3];
-    let Di = voxel[4];
-    let Dj = voxel[5];
+    let Di = voxel[2];
+    let Dj = voxel[3];
 
     let pi = [];
     let pj = [];
@@ -45,7 +43,7 @@ function pixelCal(image){
         if(i%3===0) {
             pi[i] = Math.floor(((vPx[i] - Sx )/ (Di)) * 10) / 10;
         }
-        else if(i%3==1){
+        else if(i%3===1){
             pj[i] = Math.floor(((vPy[i] - Sy) / (Dj))*10)/10;
         }
     }
@@ -55,5 +53,7 @@ function pixelCal(image){
 
     document.getElementById('pi').textContent = "Pi : " + pi ;
     document.getElementById('pj').textContent = "Pj : " + pj ;
-}
+
+    return [pi,pj]
+};
 export default pixelCal

@@ -5,16 +5,18 @@
     top:0px;
     left:0px;
 
+
 }
 
 .canvas{
-    height: 512px;
-    width: 512px;
     background:#00ff0000;
     position:absolute;
+    border:1px;
 }
 
 .overlay {
+    height: 512px;
+    width: 512px;
     /* prevent text selection on overlay */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
