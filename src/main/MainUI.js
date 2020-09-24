@@ -6,8 +6,9 @@ import * as cornerstoneWadoImageLoader from "cornerstone-wado-image-loader"
 import Hammer from "hammerjs";
 import dicomParser from "dicom-parser"
 import "./MainUI.css"
-import { angleOn, lengthOn, eraserOn, drawCircle , drawRectangle} from "./buttonEventFunction.js"
-import {handleFileChange,handle,draw} from './loadImage.js'
+import { mouseWheelE,angleOn, lengthOn, eraserOn, drawCircle , drawRectangle} from "./buttonEventFunction.js"
+import {handleFileChange, handle, draw, imageIdList, updateTheImage, showFileList} from './loadData.js'
+
 
 cornerstoneWadoImageLoader.external.cornerstone = cornerstone
 cornerstoneWadoImageLoader.external.dicomParser = dicomParser
@@ -17,10 +18,11 @@ cornerstoneTools.external.cornerstoneMath = cornerstoneMath
 cornerstoneTools.init();
 
 class MainUIElements extends React.Component {
+
     componentDidMount() {
         const element = this.element;
 
-        element.addEventListener('mousedown', function (e) {
+            element.addEventListener('mousedown', function (e) {
             let lastX = e.pageX;
             let lastY = e.pageY;
             const mouseButton = e.which;
@@ -61,6 +63,7 @@ class MainUIElements extends React.Component {
             document.addEventListener('mousemove', mouseMoveHandler);
             document.addEventListener('mouseup', mouseUpHandler);
         });
+
     }
 
     reductionOn(){
@@ -72,6 +75,7 @@ class MainUIElements extends React.Component {
         this.element.style.width='512px';
         this.element.style.height='512px';
         cornerstone.resize(this.element);
+
     }
      invertOn(){
         const viewport = cornerstone.getViewport(this.element);
@@ -105,9 +109,16 @@ class MainUIElements extends React.Component {
     render() {
         return (
             <div id ="outsideWrapper" className={"outsideWrapper"}>
-                <input type="file" multiple={"multiple"} onChange={(e) => {
+                <input type="file" onChange={(e) => {
                     handleFileChange(e)
                 }} />&nbsp;&nbsp;
+
+                <input type="file" id="filepicker" name="fileList" webkitdirectory={""} directory={""} multiple
+                       onClick={(e)=>{
+                           showFileList(e);
+                       }}/>
+                <ul id="listing"></ul>
+
                 <button onClick={()=>{handle()}}>TEST</button>
                     <div>
                         <button onClick={() => {angleOn()}}>Angle</button>&nbsp;&nbsp;
@@ -144,7 +155,9 @@ class MainUIElements extends React.Component {
 
 
                 <div id="dicomImageWrapper" className="wrapper"
-                     onContextMenu="return false" >
+                     onContextMenu="return false" onWheel={(e)=>{
+                    mouseWheelE(e);
+                }} >
                         <div id="dicomImage" className="viewportElement"
                              ref={input => {
                                  this.element = input;}}>
