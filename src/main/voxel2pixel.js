@@ -1,5 +1,5 @@
 import React from "react";
-import {readTextFile} from "./openFile";
+import readTextFile from "./openFile";
 import voxelCal from "./pixel2voxel";
 
 //Convert Parsed contour data to Array
@@ -7,6 +7,8 @@ function pixelCal(image){
     //let str = struct.toString();
 
     let struct = readTextFile(require('../dicomFile/RTStructure103.txt'));
+
+    alert(struct);
     let str = struct.split("\\");
 
     let vPx = []; //contour Data Px (voxel point x )

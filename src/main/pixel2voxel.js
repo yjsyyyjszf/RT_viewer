@@ -4,7 +4,7 @@ import * as cornerstone from "cornerstone-core";
 //caculate voxel from pixel
 function voxelCal(image) {
     let imgPos = image.data.string('x00200032');
-    imgPos = imgPos.toString();
+//    imgPos = imgPos.toString();
     let imgPosArr = imgPos.split("\\");
 
     let Sx = (parseFloat(imgPosArr[0])*10)/10;
