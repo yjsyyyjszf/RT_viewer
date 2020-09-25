@@ -34,7 +34,7 @@ function imageIdList(e){
     for(let i = 0;i<119;i++) {
          imageId[i] = cornerstoneWadoImageLoader.wadouri.fileManager.add(e.target.files[i])
     }
-    loadData(imageId[10]);
+    loadData(imageId[74]);
 }
 
 /*

@@ -8,7 +8,6 @@ function pixelCal(image){
 
     let struct = readTextFile(require('../dicomFile/RTStructure103.txt'));
 
-    alert(struct);
     let str = struct.split("\\");
 
     let vPx = []; //contour Data Px (voxel point x )
