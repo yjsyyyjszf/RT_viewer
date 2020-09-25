@@ -110,14 +110,17 @@ class MainUIElements extends React.Component {
     render() {
         return (
             <div id ="outsideWrapper" className={"outsideWrapper"}>
+                <div>File Select =>
                 <input type="file" onChange={(e) => {
                     handleFileChange(e)
                 }} />&nbsp;&nbsp;
-
+                </div>
+                <div>Directory Select =>
                 <input type="file" id="filepicker" name="fileList" webkitdirectory={""} directory={""} multiple
                        onChange={(e)=>{
                            imageIdList(e);
                        }}/>
+                </div>
                 <ul id="listing"></ul>
 
                 <button onClick={()=>{handle()}}>TEST</button>

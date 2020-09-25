@@ -13,7 +13,6 @@ function readTextFile(file) {
             {
                 var allText = rawFile.responseText;
                 struct = allText;
-
             }
         }
 
