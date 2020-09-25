@@ -8805,6 +8805,11 @@ react-scripts@3.4.3:
   optionalDependencies:
     fsevents "2.1.2"
 
+react-scroll-wheel-handler@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-scroll-wheel-handler/-/react-scroll-wheel-handler-2.0.1.tgz#b2c834efdde9d841c0dd838ba3f9fb03a22e2b3a"
+  integrity sha512-D2g2lEG8wU3FsSQmL/AS/Gzud9q1un4SwEUmW8ulljxEpxkqzIPSetOOG+YXAOFxV18rkbPEKFTlcs3zjxXN6g==
+
 react@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
