@@ -178,25 +178,7 @@
             document.addEventListener('mouseup', mouseUpHandler);
         });
 
-        const mouseWheelEvents = ['mousewheel', 'DOMMouseScroll'];
-        mouseWheelEvents.forEach(function(eventType) {
-            element.addEventListener(eventType, function (e) {
-                // Firefox e.detail > 0 scroll back, < 0 scroll forward
-                // chrome/safari e.wheelDelta < 0 scroll back, > 0 scroll forward
-                if (e.wheelDelta < 0 || e.detail > 0) {
-                    if (currentImageIndex === 0) {
-                        updateTheImage(1);
-                    }
-                } else {
-                    if (currentImageIndex === 1) {
-                        updateTheImage(0);
-                    }
-                }
 
-                // Prevent page from scrolling
-                return false;
-            });
-        });
 
         // Add event handler to the ww/wc apply button
         document.getElementById('x256').addEventListener('click', function (e) {

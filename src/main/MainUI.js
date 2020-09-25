@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Component} from "react";
 import * as cornerstone from "cornerstone-core";
 import * as cornerstoneTools from "cornerstone-tools";
 import * as cornerstoneMath from "cornerstone-math"
@@ -6,9 +6,8 @@ import * as cornerstoneWadoImageLoader from "cornerstone-wado-image-loader"
 import Hammer from "hammerjs";
 import dicomParser from "dicom-parser"
 import "./MainUI.css"
-import { mouseWheelE,angleOn, lengthOn, eraserOn, drawCircle , drawRectangle} from "./buttonEventFunction.js"
-import {handleFileChange, handle, draw, imageIdList, updateTheImage, showFileList} from './loadData.js'
-
+import { angleOn, lengthOn, eraserOn, drawCircle , drawRectangle} from "./buttonEventFunction.js"
+import {handleFileChange, handle, draw, imageIdList,updateTheImage} from './loadData.js'
 
 cornerstoneWadoImageLoader.external.cornerstone = cornerstone
 cornerstoneWadoImageLoader.external.dicomParser = dicomParser
@@ -20,7 +19,9 @@ cornerstoneTools.init();
 class MainUIElements extends React.Component {
 
     componentDidMount() {
+
         const element = this.element;
+
 
             element.addEventListener('mousedown', function (e) {
             let lastX = e.pageX;
@@ -114,8 +115,8 @@ class MainUIElements extends React.Component {
                 }} />&nbsp;&nbsp;
 
                 <input type="file" id="filepicker" name="fileList" webkitdirectory={""} directory={""} multiple
-                       onClick={(e)=>{
-                           showFileList(e);
+                       onChange={(e)=>{
+                           imageIdList(e);
                        }}/>
                 <ul id="listing"></ul>
 
@@ -156,7 +157,6 @@ class MainUIElements extends React.Component {
 
                 <div id="dicomImageWrapper" className="wrapper"
                      onContextMenu="return false" onWheel={(e)=>{
-                    mouseWheelE(e);
                 }} >
                         <div id="dicomImage" className="viewportElement"
                              ref={input => {

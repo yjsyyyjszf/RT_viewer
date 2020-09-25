@@ -18,35 +18,44 @@ cornerstoneTools.init();
 
 let currentImageIndex = 0;
 let element=document.getElementById('dicomImage');
-let imageIds=[];
+
 
 function imageIdList(e){
-   for(let i = 0;i<119;i++) {
-         imageIds[i] = cornerstoneWadoImageLoader.wadouri.fileManager.add(e.target.files[i])
+    let imageId=[];
+    let output = document.getElementById("listing");
+    let files = e.target.files;
+
+    for (let i=0; i<files.length; i++) {
+        let item = document.createElement("li");
+        item.innerHTML = files[i].webkitRelativePath;
+        output.appendChild(item);
+    };
+
+    for(let i = 0;i<119;i++) {
+         imageId[i] = cornerstoneWadoImageLoader.wadouri.fileManager.add(e.target.files[i])
     }
-    loadImage(imageIds[0]);
+    loadData(imageId[10]);
 }
 
+/*
+*  function myfunction(e){
+            if(e.wheelDelta <0 || e.detail>0){
+                if(currentImageIndex===0){
+                    updateTheImage(imageIds,1);
+                }
+            }
+            else{
+                if(currentImageIndex===1){
+                    updateTheImage(imageIds,0);
+                }
+            }
+        }*/
 
-function loadImage(imageIds){
-    let el = document.getElementById('dicomImage');
 
-    cornerstone.enable(el)
-    cornerstone.loadAndCacheImage(imageIds).then(function (image) {
-        const viewport = cornerstone.getDefaultViewportForImage(el, image);
-        cornerstone.displayImage(el, image, viewport);
-    });
-}
 
-// updates the image display
-function updateTheImage(imageIndex) {
-    return cornerstone.loadImage(imageIds[imageIndex]).then(function(image) {
-        currentImageIndex = imageIndex;
-        const viewport = cornerstone.getDefaultViewportForImage(element,image);
-        cornerstone.displayImage(element, image, viewport);
-    });
-}
 
+
+/************************************************************************/
 function handleFileChange(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -54,9 +63,6 @@ function handleFileChange(e) {
     const imageId = cornerstoneWadoImageLoader.wadouri.fileManager.add(e.target.files[0])
     loadData(imageId);
 }
-
-/************************************************************************/
-
 let img;
 
 //load one CT Image from local file
@@ -118,9 +124,8 @@ function showFileList(e){
         let item = document.createElement("li");
         item.innerHTML = files[i].webkitRelativePath;
         output.appendChild(item);
-        alert(item)
     };
 
 }
 
-export {handleFileChange, handle,loadData,draw,showFileList,updateTheImage,imageIdList}
+export {handleFileChange, handle,loadData,draw,showFileList,imageIdList}
